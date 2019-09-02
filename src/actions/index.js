@@ -19,6 +19,26 @@ const loginError = (error) => {
 }
 
 
+const loginSend = () => {
+  return {
+    type: 'SET_LOGIN_REQUEST'
+  }
+}
+
+const loginSendOk = (isLoggedIn) => {
+  return {
+    type: 'SET_LOGIN_SUCCESS',
+    value: isLoggedIn,
+  }
+}
+
+const loginSendFail = (error) => {
+  return {
+    type: 'SET_LOGIN_FAILURE',
+    value: error,
+  }
+}
+
 
 // const fetchBooksOld = (dispatch, bookstoreService) => () => {
 //   dispatch( booksRequested() );
@@ -35,10 +55,10 @@ const getLogin = (loginService) => () => (dispatch) => {
 }
 
 const setLogin = (loginService) => (isLoggedIn) => (dispatch) => {
-  dispatch( loginRequested() );
+  dispatch( loginSend() );
   loginService.setLogin(isLoggedIn)
-    .then( (data) => dispatch(loginLoaded(data)) )
-    .catch( (err) => dispatch(loginError(err)) )
+    .then( (data) => dispatch(loginSendOk(data)) )
+    .catch( (err) => dispatch(loginSendFail(err)) )
 }
 
 export {
