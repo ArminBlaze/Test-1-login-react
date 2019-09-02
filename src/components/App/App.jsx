@@ -1,13 +1,15 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import withLoginService from 'hocs/withLoginService';
 
-import Header from '../Header/Header';
+import Header from 'components/Header/Header';
 import {
   HomePage,
   NewsPage,
   LoginPage,
   ProfilePage
-} from '../pages/index.js';
+} from 'components/pages/';
+
 
 
 class App extends React.Component {
@@ -18,11 +20,14 @@ class App extends React.Component {
           <Header />
           <Switch >
             <Route path="/" component={HomePage} exact/>
-            <Route path="/cart" component={CartPage}/>
+            <Route path="/news" component={NewsPage}/>
+            <Route path="/profile" component={ProfilePage}/>
+            <Route path="/login" component={LoginPage}/>
+            <Route render={() => <h2>Page not found.</h2>}/>
           </Switch>
         </main>
     )
   }
 }
 
-export default withBookstoreService(App);
+export default withLoginService(App);
