@@ -13,4 +13,19 @@ export default class BookstoreService {
     })
   }
 
+  setLogin(isLoggedIn) {
+    return new Promise( (resolve, reject) => {
+      
+      setTimeout( () => {
+        if (Math.random() > 0.75) {
+          reject(new Error('BIG ERROR!'))
+        }
+        else {
+          this.data.isLoggedIn = isLoggedIn;
+          resolve(this.data);
+        }
+      }, 700);
+    })
+  }
+
 }
