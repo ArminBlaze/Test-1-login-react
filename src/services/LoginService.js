@@ -1,14 +1,14 @@
 
 //тут написать запись в сторейдж и получение оттуда: 2 метода
-export default class BookstoreService {
+export default class LoginService {
   data = {
-    isLoggedIn: true,
+    isLoggedIn: false,
   };
 		
   getLogin() {
     return new Promise( (resolve, reject) => {
       setTimeout( () => {
-        resolve(this.data);
+        resolve(this.data.isLoggedIn);
       }, 700);
     })
   }
@@ -22,7 +22,7 @@ export default class BookstoreService {
         }
         else {
           this.data.isLoggedIn = isLoggedIn;
-          resolve(this.data);
+          resolve(this.data.isLoggedIn);
         }
       }, 700);
     })

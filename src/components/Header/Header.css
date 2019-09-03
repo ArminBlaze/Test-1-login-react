@@ -37,6 +37,7 @@
   align-items: center;
   padding: .5rem 1rem;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .Header a:hover {

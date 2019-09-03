@@ -1,12 +1,12 @@
 const initialState = {
   isLoggedIn: false,
-  loading: true,
+  loading: false,
   error: null,
 };
 
 
 const reducer = (state = initialState, action) => {
-  console.log(action.type);
+  console.log(action.type, action.value);
 
   switch (action.type) {
     case 'FETCH_LOGIN_REQUEST': {
