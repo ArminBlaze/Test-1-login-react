@@ -1,12 +1,12 @@
 import React from 'react';
-// import './ShopHeader.css';
+import './Header.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const ShopHeader = ({ isLoggedIn }) => {
+const Header = ({ isLoggedIn }) => {
   return (
-    <header className="ShopHeader row">
-      <Link to="/" className="ShopHeader__logo text-dark">ReStore</Link>
+    <header className="Header row">
+      <Link to="/" className="Header__logo text-dark">React Login</Link>
       <ul className="d-flex">
         <li>
           <Link to="/news/">News</Link>
@@ -32,4 +32,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps)(ShopHeader);
+export default connect(mapStateToProps)(Header);

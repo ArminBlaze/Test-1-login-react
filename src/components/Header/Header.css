@@ -1,0 +1,57 @@
+.Header {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  
+}
+
+.Header__logo {
+  font-family: serif;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.Header ul {
+  margin: 0;
+}
+
+.Header ul li {
+  list-style: none;
+  margin: 0;
+  /* padding: .5rem 1rem; */
+  /* border-radius: 3px; */
+}
+
+.Header ul li:hover {
+  background-color: #444;
+}
+
+.Header ul a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem 1rem;
+  border-radius: 3px;
+}
+
+.Header a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.Header h3 a {
+  color: white;
+}
+
+.Header h3 a:hover {
+  color: #00bc8c;
+}
+
+.Header button {
+  margin-bottom: 16px;
+}
