@@ -23,7 +23,8 @@ class ProfilePage extends React.Component {
   
     return (
       <div className='jumbotron text-center'>
-        <h3>Профиль - виден только после входа.</h3>
+        <h3>Профиль.</h3>
+        <p>Виден только после входа.</p>
       </div>
     )
   }
