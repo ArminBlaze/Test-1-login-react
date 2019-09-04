@@ -2,6 +2,7 @@ const initialState = {
   isLoggedIn: false,
   loading: false,
   error: null,
+  wrongPassword: false,
 };
 
 
@@ -39,6 +40,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: null,
+        wrongPassword: false,
       }
     }
 
@@ -48,6 +50,7 @@ const reducer = (state = initialState, action) => {
         isLoggedIn: action.value,
         loading: false,
         error: null,
+        wrongPassword: !action.value
       }
     }
 
