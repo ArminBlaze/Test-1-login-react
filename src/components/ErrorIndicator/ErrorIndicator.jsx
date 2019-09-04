@@ -3,16 +3,16 @@ import React from 'react';
 import './ErrorIndicator.css';
 // import icon from './death-star.png';
 
-const ErrorIndicator = () => {
+const ErrorIndicator = ({error}) => {
   return (
     <div className="ErrorIndicator">
       {/* <img src={icon} alt="error icon"/> */}
       <span className="boom">Ой!</span>
       <span>
-        Что-то пошло не так.
+        {error}
       </span>
       <span>
-        Наши библиотекари скоро всё починят.
+        Мы скоро все починим.
       </span>
     </div>
   );

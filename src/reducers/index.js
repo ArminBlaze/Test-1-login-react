@@ -7,7 +7,8 @@ const initialState = {
 
 
 const reducer = (state = initialState, action) => {
-  console.log(action.type, action.value);
+  console.log(action.type, action.value, typeof action.value);
+  console.dir(action.value);
 
   switch (action.type) {
     case 'FETCH_LOGIN_REQUEST': {
@@ -31,7 +32,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.value,
+        error: action.value.message,
       }
     }
 
@@ -58,7 +59,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.value,
+        error: action.value.message,
       }
     }
 
