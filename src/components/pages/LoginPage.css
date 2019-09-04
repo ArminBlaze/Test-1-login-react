@@ -1,3 +1,26 @@
+.LoginPage {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 form {
+  position: relative;
+}
+
+.LoginPage__error {
+  position: absolute;
+  margin: 0 auto;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  opacity: 0;
+}
+
+.LoginPage__error.show {
+  opacity: 1;
+}
+
+.LoginPage__btn {
   position: relative;
 }

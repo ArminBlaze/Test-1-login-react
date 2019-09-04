@@ -24,7 +24,7 @@ export default class LoginService {
     return new Promise( (resolve, reject) => {
       
       setTimeout( () => {
-        if (Math.random() > 0.75) {
+        if (Math.random() > 1) {
           reject(new Error('Пропал интернет! (тестовая ошибка)'))
         }
         else {
