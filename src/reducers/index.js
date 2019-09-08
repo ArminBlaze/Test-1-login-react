@@ -48,10 +48,10 @@ const reducer = (state = initialState, action) => {
     case 'SET_LOGIN_SUCCESS': {
       return {
         ...state,
-        isLoggedIn: action.value,
+        isLoggedIn: action.value.isLoggedIn,
         loading: false,
         error: null,
-        wrongPassword: !action.value
+        wrongPassword: action.value.wrongPassword
       }
     }
 

@@ -29,8 +29,22 @@ export default class LoginService {
         }
         else {
           if(data) {
-            this.data.isLoggedIn = this.testLogin(data);
-            resolve(this.data.isLoggedIn);
+            let correctPassword = this.testLogin(data);
+
+            if(correctPassword) {
+              this.data.isLoggedIn = correctPassword;
+              resolve({
+                isLoggedIn: this.data.isLoggedIn,
+                wrongPassword: false
+              });
+            }
+            else {
+              resolve({
+                isLoggedIn: this.data.isLoggedIn,
+                wrongPassword: true
+              });
+            }
+            
             console.log('Вход');
             
             return;
@@ -39,7 +53,10 @@ export default class LoginService {
 
           this.data.isLoggedIn = false;
           console.log('Выход');
-          resolve(this.data.isLoggedIn);
+          resolve({
+            isLoggedIn: this.data.isLoggedIn,
+            wrongPassword: false
+          });
         }
       }, 700);
     })
