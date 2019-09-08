@@ -5,7 +5,7 @@
   justify-content: space-between;
   padding-left: 1rem;
   padding-right: 1rem;
-  
+  color: #007bff;
 }
 
 .Header__logo {
@@ -40,7 +40,8 @@
   cursor: pointer;
 }
 
-.Header a:hover {
+.Header a:hover,
+.Header button:hover {
   text-decoration: none;
   color: white;
 }
@@ -51,8 +52,4 @@
 
 .Header h3 a:hover {
   color: #00bc8c;
-}
-
-.Header button {
-  margin-bottom: 16px;
 }

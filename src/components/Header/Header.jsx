@@ -2,6 +2,7 @@ import React from 'react';
 import './Header.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import LoginBox from 'components/LoginBox/LoginBox'
 
 const Header = ({ isLoggedIn }) => {
   return (
@@ -9,13 +10,13 @@ const Header = ({ isLoggedIn }) => {
       <Link to="/" className="Header__logo text-dark">React Login</Link>
       <ul className="d-flex">
         <li>
-          <Link to="/news/">News</Link>
+          <Link to="/news/">Новости</Link>
         </li>
         <li>
-          <Link to="/profile/">Profile</Link>
+          <Link to="/profile/">Профиль</Link>
         </li>
         <li>
-          <Link to="/login">Login</Link>
+          <LoginBox />
         </li>
       </ul>
     </header>

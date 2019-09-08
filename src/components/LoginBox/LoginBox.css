@@ -1,0 +1,12 @@
+.LoginBox__link,
+.LoginBox__btn {
+  position: relative;
+}
+
+.LoginBox__btn {
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  color: inherit;
+  border: inherit;
+}

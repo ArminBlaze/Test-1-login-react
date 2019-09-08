@@ -1,6 +1,6 @@
 const initialState = {
   isLoggedIn: false,
-  loading: false,
+  loading: true,
   error: null,
   wrongPassword: false,
 };

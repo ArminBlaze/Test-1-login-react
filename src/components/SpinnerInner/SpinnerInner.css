@@ -10,7 +10,7 @@
   z-index: 1;
   border-radius: inherit;
   border: inherit;
-  background-color: inherit;
+  background-color: rgba(0,0,0, 0.3);
   
   background-image: url('Spinner.svg');
   background-repeat: no-repeat;
