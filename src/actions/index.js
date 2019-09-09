@@ -39,14 +39,6 @@ const loginSendFail = (error) => {
   }
 }
 
-
-// const fetchBooksOld = (dispatch, bookstoreService) => () => {
-//   dispatch( booksRequested() );
-//   bookstoreService.getBooks()
-//     .then( (data) => dispatch(booksLoaded(data)) )
-//     .catch( (err) => dispatch(booksError(err)) )
-// }
-
 const getLogin = (loginService) => () => (dispatch) => {
   dispatch( loginRequested() );
   loginService.getLogin()

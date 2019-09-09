@@ -19,7 +19,7 @@ class App extends React.Component {
         <main role="main" className="container">
           <Header />
           <Switch >
-            <Route path="/" component={HomePage} exact/>
+            <Route path="/" exact component={HomePage}/>
             <Route path="/news" component={NewsPage}/>
             <Route path="/profile" component={ProfilePage}/>
             <Route path="/login" component={LoginPage}/>

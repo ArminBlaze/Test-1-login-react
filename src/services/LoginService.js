@@ -3,11 +3,6 @@
 
 //тут написать запись в сторейдж и получение оттуда: 2 метода
 export default class LoginService {
-  // data = {
-  //   isLoggedIn: false,
-  //   name: 'Admin',
-  //   password: '12345',
-  // };
 
   data = {
     isLoggedIn: (localStorage.getItem('isLoggedIn')) ? JSON.parse(localStorage.getItem('isLoggedIn')) : false,
