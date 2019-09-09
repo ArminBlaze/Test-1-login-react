@@ -3,16 +3,23 @@
 
 //тут написать запись в сторейдж и получение оттуда: 2 метода
 export default class LoginService {
+  // data = {
+  //   isLoggedIn: false,
+  //   name: 'Admin',
+  //   password: '12345',
+  // };
+
   data = {
-    isLoggedIn: false,
+    isLoggedIn: (localStorage.getItem('isLoggedIn')) ? JSON.parse(localStorage.getItem('isLoggedIn')) : false,
     name: 'Admin',
     password: '12345',
-  };
-
+  }
 		
   getLogin() {
+
     return new Promise( (resolve, reject) => {
       setTimeout( () => {
+        
         resolve(this.data.isLoggedIn);
       }, 700);
     })
@@ -32,7 +39,9 @@ export default class LoginService {
             let correctPassword = this.testLogin(data);
 
             if(correctPassword) {
-              this.data.isLoggedIn = correctPassword;
+              this.data.isLoggedIn = true;
+              this.setStorage(true);
+
               resolve({
                 isLoggedIn: this.data.isLoggedIn,
                 wrongPassword: false
@@ -45,14 +54,13 @@ export default class LoginService {
               });
             }
             
-            console.log('Вход');
-            
             return;
           }
 
 
           this.data.isLoggedIn = false;
-          console.log('Выход');
+          this.setStorage(false);
+
           resolve({
             isLoggedIn: this.data.isLoggedIn,
             wrongPassword: false
@@ -60,6 +68,10 @@ export default class LoginService {
         }
       }, 700);
     })
+  }
+
+  setStorage(data) {
+    localStorage.setItem('isLoggedIn', data);
   }
 
   testLogin(data) {

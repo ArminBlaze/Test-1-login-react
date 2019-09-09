@@ -7,8 +7,8 @@ const initialState = {
 
 
 const reducer = (state = initialState, action) => {
-  console.log(action.type, action.value, typeof action.value);
-  console.dir(action.value);
+  // console.log(action.type, action.value, typeof action.value);
+  // console.dir(action.value);
 
   switch (action.type) {
     case 'FETCH_LOGIN_REQUEST': {
@@ -46,12 +46,14 @@ const reducer = (state = initialState, action) => {
     }
 
     case 'SET_LOGIN_SUCCESS': {
+      let data = action.value;
+      
       return {
         ...state,
-        isLoggedIn: action.value.isLoggedIn,
+        isLoggedIn: data.isLoggedIn,
         loading: false,
         error: null,
-        wrongPassword: action.value.wrongPassword
+        wrongPassword: data.wrongPassword
       }
     }
 

@@ -22,20 +22,24 @@ class LoginBox extends React.Component {
 
   render() {
     const { isLoggedIn, loading, error } = this.props;
-    console.log(loading);
     
     let spinner = (loading) ? <SpinnerInner /> : null;
     let isButtonDisabled = (loading) ? 'disabled' : false;
 
     if(error) return <ErrorIndicator />
 
-    if(!isLoggedIn) return <Link to="/login"
-      className="LoginBox__link"
-    >
-        {spinner}
-        Войти
-      </Link>;
-  
+    if(!isLoggedIn) {
+      return (
+        <Link to="/login"
+          className="LoginBox__link"
+        >
+          {spinner}
+          Войти
+        </Link>
+      );
+    } 
+
+    
     return (
       <button type="button" disabled={isButtonDisabled}
         className="LoginBox__btn"
