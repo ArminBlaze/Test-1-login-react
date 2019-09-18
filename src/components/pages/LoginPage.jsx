@@ -6,12 +6,21 @@ import {compose, bindActionCreators} from 'redux';
 import { setLogin } from 'actions';
 import SpinnerInner from 'components/SpinnerInner/SpinnerInner';
 import ErrorIndicator from 'components/ErrorIndicator/ErrorIndicator';
+import PropTypes from 'prop-types';
 import './LoginPage.css';
 
 class LoginPage extends React.Component  {
   state = {
     name: '',
     password: ''
+  }
+
+  static propTypes = {
+    setLogin: PropTypes.func,
+    isLoggedIn: PropTypes.bool,
+    loading: PropTypes.bool,
+    error: PropTypes.bool,
+    wrongPassword: PropTypes.bool,
   }
 
   onNameChange = (e) => {
@@ -102,6 +111,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { loginService } = ownProps;
+  
   return bindActionCreators({
     setLogin: setLogin(loginService),
   }, dispatch)

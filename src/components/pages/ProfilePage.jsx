@@ -6,9 +6,17 @@ import {compose, bindActionCreators} from 'redux';
 import { getLogin } from 'actions';
 import Spinner from 'components/Spinner/Spinner';
 import ErrorIndicator from 'components/ErrorIndicator/ErrorIndicator';
+import PropTypes from 'prop-types';
 
 
 class ProfilePage extends React.Component {
+
+  static propTypes = {
+    getLogin: PropTypes.func,
+    isLoggedIn: PropTypes.bool,
+    loading: PropTypes.bool,
+    error: PropTypes.bool,
+  }
 
   componentDidMount() {
     this.props.getLogin();
@@ -44,6 +52,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { loginService } = ownProps;
+
   return bindActionCreators({
     getLogin: getLogin(loginService),
   }, dispatch)

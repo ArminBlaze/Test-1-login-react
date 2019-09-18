@@ -3,6 +3,7 @@ import './Header.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import LoginBox from 'components/LoginBox/LoginBox'
+import PropTypes from 'prop-types';
 
 const Header = ({ isLoggedIn }) => {
   return (
@@ -22,6 +23,10 @@ const Header = ({ isLoggedIn }) => {
     </header>
   )
 };
+
+Header.propTypes = {
+  isLoggedIn: PropTypes.bool
+}
 
 
 const mapStateToProps = (state) => {

@@ -8,9 +8,18 @@ import { setLogin, getLogin } from 'actions';
 import SpinnerInner from 'components/SpinnerInner/SpinnerInner';
 import ErrorIndicator from 'components/ErrorIndicator/ErrorIndicator';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './LoginBox.css';
 
 class LoginBox extends React.Component {
+
+  static propTypes = {
+    getLogin: PropTypes.func,
+    setLogin: PropTypes.func,
+    isLoggedIn: PropTypes.bool,
+    loading: PropTypes.bool,
+    error: PropTypes.bool,
+  }
 
   componentDidMount() {
     this.props.getLogin();
