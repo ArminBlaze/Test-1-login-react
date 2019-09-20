@@ -1,11 +1,11 @@
 
 
-
 //тут написать запись в сторейдж и получение оттуда: 2 метода
 export default class LoginService {
 
+
   data = {
-    isLoggedIn: (localStorage.getItem('isLoggedIn')) ? JSON.parse(localStorage.getItem('isLoggedIn')) : false,
+    user: (localStorage.getItem('user')) ? localStorage.getItem('user') : '',
     name: 'Admin',
     password: '12345',
   }
@@ -15,7 +15,7 @@ export default class LoginService {
     return new Promise( (resolve, reject) => {
       setTimeout( () => {
         
-        resolve(this.data.isLoggedIn);
+        resolve(this.data.user);
       }, 700);
     })
   }
@@ -34,18 +34,14 @@ export default class LoginService {
             let correctPassword = this.testLogin(data);
 
             if(correctPassword) {
-              this.data.isLoggedIn = true;
-              this.setStorage(true);
+              this.data.user = data.name;
+              this.setStorage(data.name);
 
-              resolve({
-                isLoggedIn: this.data.isLoggedIn,
-                wrongPassword: false
-              });
+              resolve(this.data.user);
             }
             else {
-              resolve({
-                isLoggedIn: this.data.isLoggedIn,
-                wrongPassword: true
+              reject({
+                msg: 'Вы ввели неправильные имя и (или) пароль.'
               });
             }
             
@@ -53,20 +49,17 @@ export default class LoginService {
           }
 
 
-          this.data.isLoggedIn = false;
-          this.setStorage(false);
+          this.data.user = '';
+          this.setStorage('');
 
-          resolve({
-            isLoggedIn: this.data.isLoggedIn,
-            wrongPassword: false
-          });
+          resolve(null);
         }
       }, 700);
     })
   }
 
   setStorage(data) {
-    localStorage.setItem('isLoggedIn', data);
+    localStorage.setItem('user', data);
   }
 
   testLogin(data) {

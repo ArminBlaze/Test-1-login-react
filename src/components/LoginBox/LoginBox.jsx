@@ -14,11 +14,13 @@ import './LoginBox.css';
 class LoginBox extends React.Component {
 
   static propTypes = {
-    getLogin: PropTypes.func,
-    setLogin: PropTypes.func,
-    isLoggedIn: PropTypes.bool,
-    loading: PropTypes.bool,
-    error: PropTypes.bool,
+    getLogin: PropTypes.func.isRequired,
+    setLogin: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
   }
 
   componentDidMount() {
@@ -30,14 +32,13 @@ class LoginBox extends React.Component {
   }
 
   render() {
-    const { isLoggedIn, loading, error } = this.props;
+    const { user, loading, error } = this.props;
     
     let spinner = (loading) ? <SpinnerInner /> : null;
     let isButtonDisabled = (loading) ? 'disabled' : false;
 
-    if(error) return <ErrorIndicator />
 
-    if(!isLoggedIn) {
+    if(!user) {
       return (
         <Link to="/login"
           className="LoginBox__link"
@@ -64,10 +65,10 @@ class LoginBox extends React.Component {
 
 
 const mapStateToProps = (state) => {
-  const {isLoggedIn, loading, error} = state;
+  const {user, loading, error} = state;
 
   return {
-    isLoggedIn,
+    user,
     loading,
     error,
   }

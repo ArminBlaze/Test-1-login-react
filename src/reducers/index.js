@@ -1,8 +1,7 @@
 const initialState = {
-  isLoggedIn: false,
+  user: null,
   loading: true,
   error: null,
-  wrongPassword: false,
 };
 
 
@@ -22,7 +21,9 @@ const reducer = (state = initialState, action) => {
     case 'FETCH_LOGIN_SUCCESS': {
       return {
         ...state,
-        isLoggedIn: action.value,
+        user: {
+          name: action.value
+        },
         loading: false,
         error: null,
       }
@@ -41,19 +42,26 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: null,
-        wrongPassword: false,
       }
     }
 
     case 'SET_LOGIN_SUCCESS': {
-      let data = action.value;
-      
       return {
         ...state,
-        isLoggedIn: data.isLoggedIn,
+        user: {
+          name: action.value
+        },
         loading: false,
         error: null,
-        wrongPassword: data.wrongPassword
+      }
+    }
+
+    case 'SET_LOGOUT_SUCCESS': {
+      return {
+        ...state,
+        user: null,
+        loading: false,
+        error: null,
       }
     }
 
@@ -61,7 +69,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.value.message,
+        error: action.value.msg,
       }
     }
 

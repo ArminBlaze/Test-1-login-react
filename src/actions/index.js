@@ -4,10 +4,16 @@ const loginRequested = () => {
   }
 }
 
-const loginLoaded = (isLoggedIn) => {
+const loginLoaded = (user) => {
+  if(!user) {
+    return {
+      type: 'SET_LOGOUT_SUCCESS',
+    }
+  }
+
   return {
     type: 'FETCH_LOGIN_SUCCESS',
-    value: isLoggedIn,
+    value: user,
   }
 }
 
@@ -25,14 +31,21 @@ const loginSend = () => {
   }
 }
 
-const loginSendOk = (isLoggedIn) => {
+const loginSendOk = (user) => {
+  if(!user) {
+    return {
+      type: 'SET_LOGOUT_SUCCESS',
+    }
+  }
+  
   return {
     type: 'SET_LOGIN_SUCCESS',
-    value: isLoggedIn,
+    value: user,
   }
 }
 
 const loginSendFail = (error) => {
+  
   return {
     type: 'SET_LOGIN_FAILURE',
     value: error,
@@ -42,14 +55,14 @@ const loginSendFail = (error) => {
 const getLogin = (loginService) => () => (dispatch) => {
   dispatch( loginRequested() );
   loginService.getLogin()
-    .then( (data) => dispatch(loginLoaded(data)) )
+    .then( (user) => dispatch(loginLoaded(user)) )
     .catch( (err) => dispatch(loginError(err)) )
 }
 
-const setLogin = (loginService) => (isLoggedIn) => (dispatch) => {
+const setLogin = (loginService) => (data) => (dispatch) => {
   dispatch( loginSend() );
-  loginService.setLogin(isLoggedIn)
-    .then( (data) => dispatch(loginSendOk(data)) )
+  loginService.setLogin(data)
+    .then( (user) => dispatch(loginSendOk(user)) )
     .catch( (err) => dispatch(loginSendFail(err)) )
 }
 

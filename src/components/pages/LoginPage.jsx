@@ -16,11 +16,12 @@ class LoginPage extends React.Component  {
   }
 
   static propTypes = {
-    setLogin: PropTypes.func,
-    isLoggedIn: PropTypes.bool,
-    loading: PropTypes.bool,
-    error: PropTypes.bool,
-    wrongPassword: PropTypes.bool,
+    setLogin: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
   }
 
   onNameChange = (e) => {
@@ -52,21 +53,21 @@ class LoginPage extends React.Component  {
   }
 
   render() {
-    const { isLoggedIn, loading, error, wrongPassword } = this.props;
+    const { user, loading, error } = this.props;
 
     // if(loading) return <Spinner />
     let spinner = (loading) ? <SpinnerInner /> : null;
-    if(error) return <ErrorIndicator error={error}/>
+    // if(error) return <ErrorIndicator error={error}/>
 
-    if(isLoggedIn) return <Redirect to='/profile'/>;
+    if(user) return <Redirect to='/profile'/>;
 
-    let errorClass = (wrongPassword) ? 'show' : '';
+    let errorClass = (error) ? 'show' : '';
     let isButtonDisabled = (loading) ? 'disabled' : false;
 
     return (
       <div className='LoginPage jumbotron'>
         <div className={`${errorClass} LoginPage__error alert alert-danger`}>
-            Вы ввели неправильные имя и (или) пароль.
+          {error}
         </div>
         <p>Войдите, чтобы увидеть секретную страницу!</p>
         <form onSubmit={ this.onFormSubmit }>
@@ -99,13 +100,12 @@ class LoginPage extends React.Component  {
 
 
 const mapStateToProps = (state) => {
-  const {isLoggedIn, loading, error, wrongPassword} = state;
+  const {user, loading, error} = state;
 
   return {
-    isLoggedIn,
+    user,
     loading,
     error,
-    wrongPassword,
   }
 };
 

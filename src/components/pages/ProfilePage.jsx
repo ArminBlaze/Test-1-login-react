@@ -12,10 +12,12 @@ import PropTypes from 'prop-types';
 class ProfilePage extends React.Component {
 
   static propTypes = {
-    getLogin: PropTypes.func,
-    isLoggedIn: PropTypes.bool,
-    loading: PropTypes.bool,
+    getLogin: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
     error: PropTypes.bool,
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
   }
 
   componentDidMount() {
@@ -23,11 +25,12 @@ class ProfilePage extends React.Component {
   }
 
   render() {
-    const { isLoggedIn, loading, error } = this.props;
+    const { user, loading, error } = this.props;
+    
     if(loading) return <Spinner />
     if(error) return <ErrorIndicator />
 
-    if(!isLoggedIn) return <Redirect to='/login'/>;
+    if(!user) return <Redirect to='/login'/>;
   
     return (
       <div className='jumbotron text-center'>
@@ -41,10 +44,10 @@ class ProfilePage extends React.Component {
 
 
 const mapStateToProps = (state) => {
-  const {isLoggedIn, loading, error} = state;
+  const {user, loading, error} = state;
 
   return {
-    isLoggedIn,
+    user,
     loading,
     error,
   }
