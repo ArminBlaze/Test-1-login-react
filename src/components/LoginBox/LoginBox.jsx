@@ -6,7 +6,6 @@ import {compose, bindActionCreators} from 'redux';
 import { setLogin, getLogin } from 'actions';
 // import Spinner from 'components/Spinner/Spinner';
 import SpinnerInner from 'components/SpinnerInner/SpinnerInner';
-import ErrorIndicator from 'components/ErrorIndicator/ErrorIndicator';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './LoginBox.css';
@@ -17,7 +16,6 @@ class LoginBox extends React.Component {
     getLogin: PropTypes.func.isRequired,
     setLogin: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
-    error: PropTypes.string,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }),
@@ -32,7 +30,7 @@ class LoginBox extends React.Component {
   }
 
   render() {
-    const { user, loading, error } = this.props;
+    const { user, loading } = this.props;
     
     let spinner = (loading) ? <SpinnerInner /> : null;
     let isButtonDisabled = (loading) ? 'disabled' : false;
@@ -65,12 +63,11 @@ class LoginBox extends React.Component {
 
 
 const mapStateToProps = (state) => {
-  const {user, loading, error} = state;
+  const {user, loading} = state;
 
   return {
     user,
     loading,
-    error,
   }
 };
 

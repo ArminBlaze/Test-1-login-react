@@ -5,7 +5,6 @@ import withLoginService from 'hocs/withLoginService';
 import {compose, bindActionCreators} from 'redux';
 import { setLogin } from 'actions';
 import SpinnerInner from 'components/SpinnerInner/SpinnerInner';
-import ErrorIndicator from 'components/ErrorIndicator/ErrorIndicator';
 import PropTypes from 'prop-types';
 import './LoginPage.css';
 
