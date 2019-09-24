@@ -2,13 +2,34 @@
 
 //тут написать запись в сторейдж и получение оттуда: 2 метода
 export default class LoginService {
-
+  // _apiBase = `https://mysterious-reef-29460.herokuapp.com/api/v1/validate`;
 
   data = {
     user: (localStorage.getItem('user')) ? localStorage.getItem('user') : '',
     name: 'Admin',
     password: '12345',
   }
+
+	getUrl = async (url, data) => {
+		const response = await fetch( `${this._apiBase + url}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json;'
+			},
+			body: JSON.stringify(data)
+		} );
+
+		if(!response.ok) {
+      console.log('Ошибка сервера');
+      console.dir(response);
+      throw new Error(`Ошибка сервера: ${response.status} ${response.statusText} \nЗапрашиваемый адрес: ${response.url}`)
+    } 
+
+    const json = await response.json();
+    console.log(json);
+    
+		return json;
+	}
 		
   getLogin() {
 
