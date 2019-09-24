@@ -10,7 +10,7 @@ import './LoginPage.css';
 
 class LoginPage extends React.Component  {
   state = {
-    name: '',
+    email: '',
     password: ''
   }
 
@@ -23,9 +23,9 @@ class LoginPage extends React.Component  {
     }),
   }
 
-  onNameChange = (e) => {
+  onMailChange = (e) => {
 		this.setState({
-      name: e.target.value
+      email: e.target.value
 		})
   }
   
@@ -39,7 +39,7 @@ class LoginPage extends React.Component  {
     e.preventDefault();
 
     this.props.setLogin({
-      name: this.state.name,
+      email: this.state.email,
       password: this.state.password,
     });
 		
@@ -71,16 +71,16 @@ class LoginPage extends React.Component  {
         <p>Войдите, чтобы увидеть секретную страницу!</p>
         <form onSubmit={ this.onFormSubmit }>
           <div className="form-group">
-            <label htmlFor="exampleInputName1">Имя</label>
-            <input type="text" className="form-control" id="exampleInputName1" aria-describedby="nameHelp" placeholder="Введите имя" 
+            <label htmlFor="email">Почта</label>
+            <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Введите емейл" 
             required
-            value={ this.state.name }
-            onChange={ this.onNameChange }
+            value={ this.state.email }
+            onChange={ this.onMailChange }
             />
           </div>
           <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Пароль</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Введите пароль" 
+            <label htmlFor="password">Пароль</label>
+            <input type="password" className="form-control" id="password" placeholder="Введите пароль" 
             required
             value={ this.state.password } 
             onChange={ this.onPasswordChange }
