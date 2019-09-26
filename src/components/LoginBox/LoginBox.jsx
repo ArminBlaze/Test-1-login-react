@@ -17,7 +17,7 @@ class LoginBox extends React.Component {
     setLogin: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
     user: PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
     }),
   }
 

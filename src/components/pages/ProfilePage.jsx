@@ -16,7 +16,7 @@ class ProfilePage extends React.Component {
     loading: PropTypes.bool.isRequired,
     error: PropTypes.bool,
     user: PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
     }),
   }
 

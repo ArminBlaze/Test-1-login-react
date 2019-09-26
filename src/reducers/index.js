@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: {
-          name: action.value
+          id: action.value
         },
         loading: false,
         error: null,
@@ -49,7 +49,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: {
-          name: action.value
+          id: action.value
         },
         loading: false,
         error: null,
@@ -69,7 +69,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.value.msg,
+        error: action.value,
       }
     }
 

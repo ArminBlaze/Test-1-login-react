@@ -4,8 +4,8 @@ const loginRequested = () => {
   }
 }
 
-const loginLoaded = (user) => {
-  if(!user) {
+const loginLoaded = (id) => {
+  if(!id) {
     return {
       type: 'SET_LOGOUT_SUCCESS',
     }
@@ -13,7 +13,7 @@ const loginLoaded = (user) => {
 
   return {
     type: 'FETCH_LOGIN_SUCCESS',
-    value: user,
+    value: id,
   }
 }
 
@@ -31,8 +31,8 @@ const loginSend = () => {
   }
 }
 
-const loginSendOk = (user) => {
-  if(!user) {
+const loginSendOk = (id) => {
+  if(!id) {
     return {
       type: 'SET_LOGOUT_SUCCESS',
     }
@@ -40,7 +40,7 @@ const loginSendOk = (user) => {
   
   return {
     type: 'SET_LOGIN_SUCCESS',
-    value: user,
+    value: id,
   }
 }
 
@@ -55,15 +55,18 @@ const loginSendFail = (error) => {
 const getLogin = (loginService) => () => (dispatch) => {
   dispatch( loginRequested() );
   loginService.getLogin()
-    .then( (user) => dispatch(loginLoaded(user)) )
-    .catch( (err) => dispatch(loginError(err)) )
+    .then( (id) => dispatch(loginLoaded(id)) )
+    .catch( (err) => dispatch(loginError(err.message)) )
 }
 
 const setLogin = (loginService) => (data) => (dispatch) => {
   dispatch( loginSend() );
   loginService.setLogin(data)
-    .then( (user) => dispatch(loginSendOk(user)) )
-    .catch( (err) => dispatch(loginSendFail(err)) )
+    .then( (id) => dispatch(loginSendOk(id)) )
+    .catch( (err) => {
+      console.dir(err);
+      dispatch(loginSendFail(err.message)) 
+    })
 }
 
 export {
