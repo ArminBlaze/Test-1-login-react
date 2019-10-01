@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2018 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" height="100%" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 21000 21000"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <font id="FontID0" horiz-adv-x="722" font-variant="normal" class="str1" style="fill-rule:nonzero" font-style="normal" font-weight="700">
+	<font-face 
+		font-family="Arial">
+		<font-face-src>
+			<font-face-name name="Arial Полужирный"/>
+		</font-face-src>
+	</font-face>
+   <missing-glyph><path d="M0 0z"/></missing-glyph>
+   <glyph unicode="W" horiz-adv-x="943" d="M171.333 0l-168.333 716 149 0 106.5 -491.835 130.666 491.835 172.333 0 125 -500.167 109.001 500.167 145.499 0 -172.5 -716 -154.833 0 -141.167 535.333 -142.167 -535.333 -159 0z"/>
+  </font>
+  <style type="text/css">
+   <![CDATA[
+    @font-face { font-family:"Arial";font-variant:normal;font-style:normal;font-weight:bold;src:url("#FontID0") format(svg)}
+    .str1 {stroke-width:30.87;stroke-miterlimit:22.9256}
+    .str2 {stroke:#2D2DD3;stroke-width:200;stroke-miterlimit:22.9256}
+    .str3 {stroke:#00A0E3;stroke-width:945;stroke-miterlimit:22.9256}
+    .str0 {stroke:#00A0E3;stroke-width:900;stroke-miterlimit:22.9256}
+    .fil0 {fill:none}
+    .fil1 {fill:#2D2DD3}
+    .fnt0 {font-weight:bold;font-size:6479.13px;font-family:'Arial'}
+   ]]>
+  </style>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <path class="fil0 str0" d="M10500 610l0 6188.18m0 7000l0 6811.82"/>
+  <text x="580.07" y="12819.53"  class="fil1 str2 fnt0">W</text>
+  <text x="7441.5" y="12819.53"  class="fil1 str2 fnt0">W</text>
+  <text x="14302.92" y="12819.53"  class="fil1 str2 fnt0">W</text>
+ </g>
+ <g id="Слой_x0020_1_0">
+  <metadata id="CorelCorpID_1Corel-Layer"/>
+  <path class="fil0 str3" d="M19832.66 6825c-1466.03,-3719.99 -5091.91,-6352.5 -9332.66,-6352.5 -4240.75,0 -7866.63,2632.51 -9332.66,6352.5l18665.32 0zm-18665.32 7350c1466.03,3719.99 5091.91,6352.5 9332.66,6352.5 4240.75,0 7866.63,-2632.51 9332.66,-6352.5l-18665.32 0z"/>
+  <path class="fil0 str3" d="M14663.04 6825c-653.96,-3719.99 -2271.35,-6352.5 -4163.04,-6352.5 -1891.68,0 -3509.08,2632.51 -4163.04,6352.5l8326.08 0zm-8326.08 7350c653.96,3719.99 2271.36,6352.5 4163.04,6352.5 1891.69,0 3509.08,-2632.51 4163.04,-6352.5l-8326.08 0z"/>
+  <line class="fil0 str3" x1="2625" y1="16800" x2="18374.99" y2= "16800" />
+  <line class="fil0 str3" x1="2625" y1="4200" x2="18374.99" y2= "4200" />
+ </g>
+</svg>

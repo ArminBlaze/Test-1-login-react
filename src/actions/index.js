@@ -1,6 +1,6 @@
-const loginRequested = () => {
+const fetchRequested = () => {
   return {
-    type: 'FETCH_LOGIN_REQUEST'
+    type: 'FETCH_REQUEST'
   }
 }
 
@@ -25,11 +25,11 @@ const loginError = (error) => {
 }
 
 
-const loginSend = () => {
-  return {
-    type: 'SET_LOGIN_REQUEST'
-  }
-}
+// const loginSend = () => {
+//   return {
+//     type: 'SET_LOGIN_REQUEST'
+//   }
+// }
 
 const loginSendOk = (id) => {
   if(!id) {
@@ -53,14 +53,14 @@ const loginSendFail = (error) => {
 }
 
 const getLogin = (loginService) => () => (dispatch) => {
-  dispatch( loginRequested() );
+  dispatch( fetchRequested() );
   loginService.getLogin()
     .then( (id) => dispatch(loginLoaded(id)) )
     .catch( (err) => dispatch(loginError(err.message)) )
 }
 
 const setLogin = (loginService) => (data) => (dispatch) => {
-  dispatch( loginSend() );
+  dispatch( fetchRequested() );
   loginService.setLogin(data)
     .then( (id) => dispatch(loginSendOk(id)) )
     .catch( (err) => {
@@ -69,7 +69,23 @@ const setLogin = (loginService) => (data) => (dispatch) => {
     })
 }
 
+const getUser = (userService) => (id) => (dispatch) => {
+  dispatch( fetchRequested() );
+  userService.getUser(id)
+    .then( (data) => dispatch(userLoaded(data)) )
+    .catch( (err) => dispatch(loginError(err.message)) )
+}
+
+const userLoaded = (data) => {
+  return {
+    type: 'FETCH_USER_SUCCESS',
+    value: data,
+  }
+}
+
+
 export {
   getLogin,
   setLogin,
+  getUser,
 };
