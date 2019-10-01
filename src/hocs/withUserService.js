@@ -2,15 +2,15 @@ import React from 'react';
 import { ServicesConsumer } from 'components/ServicesContext/ServicesContext';
 
 
-const withLoginService = (Component, mapMethodsToProps) => {
+const withUserService = (Component, mapMethodsToProps) => {
 
   return (props) => {
     return (
       <ServicesConsumer>
         {
-          ({loginService}) => {
+          ({userService}) => {
             return <Component {...props} 
-              loginService={loginService} />
+              userService={userService} />
           }
         }
       </ServicesConsumer>
@@ -18,4 +18,4 @@ const withLoginService = (Component, mapMethodsToProps) => {
   }
 }
 
-export default withLoginService;
+export default withUserService;

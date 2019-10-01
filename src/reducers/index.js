@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
   // console.dir(action.value);
 
   switch (action.type) {
-    case 'FETCH_LOGIN_REQUEST': {
+    case 'FETCH_REQUEST': {
       return {
         ...state,
         loading: true,
@@ -37,13 +37,13 @@ const reducer = (state = initialState, action) => {
       }
     }
 
-    case 'SET_LOGIN_REQUEST': {
-      return {
-        ...state,
-        loading: true,
-        error: null,
-      }
-    }
+    // case 'SET_LOGIN_REQUEST': {
+    //   return {
+    //     ...state,
+    //     loading: true,
+    //     error: null,
+    //   }
+    // }
 
     case 'SET_LOGIN_SUCCESS': {
       return {
@@ -73,11 +73,44 @@ const reducer = (state = initialState, action) => {
       }
     }
 
+    case 'FETCH_USER_SUCCESS': {
+      // if(!state.user) {
+      //   return state
+      // }
+
+      const data = action.value;
+
+      return {
+
+        ...state,
+        user: {
+          ...state.user,
+          city: data.city,
+          languages: data.languages,
+          social: filterSocial(data.social)
+        },
+        loading: false,
+        error: null,
+      }
+    }
+
     
     default: 
       return state;
   }
 
+}
+
+
+//найти web и поставить в новый массив на позицию 0
+function filterSocial(social) {
+  const idx = social.findIndex((item) => item.label === 'web');
+  
+  return [
+    ...social.slice(idx, idx+1),
+    ...social.slice(0, idx),
+    ...social.slice(idx+1) //без второго аргумента = до конца.
+  ]
 }
 
 
