@@ -35,6 +35,7 @@ class NewsPage extends React.Component {
 
     return (
       <div>
+        <p>Всего новостей: {news.length}</p>
         { this.generateNews(news) }
       </div>
     )
