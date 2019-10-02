@@ -8,7 +8,7 @@ export default class UserService {
 
   async getUser(id) {
 
-    let response = await getUrl(apiBase + '/user-info/' + id)
+    let response = await getUrl(apiBase + '/user-info/' + id);
 
     if(response.status !== 'ok') {
       if(response.message === 'user_not_found') {
@@ -18,7 +18,7 @@ export default class UserService {
       throw new Error(`Неизвестная ошибка при получении данных пользователя: ${response.message}`)
     }
 
-    console.log(response);
+    console.log('UserService response: ', response);
     
     return(response.data);
   }

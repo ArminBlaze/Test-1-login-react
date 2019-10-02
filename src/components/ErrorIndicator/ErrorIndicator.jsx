@@ -11,9 +11,6 @@ const ErrorIndicator = ({error}) => {
       <span>
         {error}
       </span>
-      <span>
-        Мы скоро все починим.
-      </span>
     </div>
   );
 };

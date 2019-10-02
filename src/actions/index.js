@@ -17,12 +17,19 @@ const loginLoaded = (id) => {
   }
 }
 
-const loginError = (error) => {
+const fetchError = (error) => {
   return {
-    type: 'FETCH_LOGIN_FAILURE',
+    type: 'FETCH_FAILURE',
     value: error,
   }
 }
+
+// const loginError = (error) => {
+//   return {
+//     type: 'FETCH_LOGIN_FAILURE',
+//     value: error,
+//   }
+// }
 
 
 // const loginSend = () => {
@@ -44,19 +51,19 @@ const loginSendOk = (id) => {
   }
 }
 
-const loginSendFail = (error) => {
+// const loginSendFail = (error) => {
   
-  return {
-    type: 'SET_LOGIN_FAILURE',
-    value: error,
-  }
-}
+//   return {
+//     type: 'SET_LOGIN_FAILURE',
+//     value: error,
+//   }
+// }
 
 const getLogin = (loginService) => () => (dispatch) => {
   dispatch( fetchRequested() );
   loginService.getLogin()
     .then( (id) => dispatch(loginLoaded(id)) )
-    .catch( (err) => dispatch(loginError(err.message)) )
+    .catch( (err) => dispatch(fetchError(err.message)) )
 }
 
 const setLogin = (loginService) => (data) => (dispatch) => {
@@ -65,7 +72,7 @@ const setLogin = (loginService) => (data) => (dispatch) => {
     .then( (id) => dispatch(loginSendOk(id)) )
     .catch( (err) => {
       console.dir(err);
-      dispatch(loginSendFail(err.message)) 
+      dispatch(fetchError(err.message)) 
     })
 }
 
@@ -73,7 +80,7 @@ const getUser = (userService) => (id) => (dispatch) => {
   dispatch( fetchRequested() );
   userService.getUser(id)
     .then( (data) => dispatch(userLoaded(data)) )
-    .catch( (err) => dispatch(loginError(err.message)) )
+    .catch( (err) => dispatch(fetchError(err.message)) )
 }
 
 const userLoaded = (data) => {
@@ -83,9 +90,24 @@ const userLoaded = (data) => {
   }
 }
 
+const getNews = (newsService) => (id) => (dispatch) => {
+  dispatch( fetchRequested() );
+  newsService.getNews(id)
+    .then( (data) => dispatch(newsLoaded(data)) )
+    .catch( (err) => dispatch(fetchError(err.message)) )
+}
+
+const newsLoaded = (data) => {
+  return {
+    type: 'FETCH_NEWS_SUCCESS',
+    value: data,
+  }
+}
+
 
 export {
   getLogin,
   setLogin,
   getUser,
+  getNews,
 };

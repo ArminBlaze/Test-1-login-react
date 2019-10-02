@@ -37,6 +37,8 @@ class LoginPage extends React.Component  {
   
   onFormSubmit = (e) => {
     e.preventDefault();
+    console.log('Отправка Формы');
+    
 
     this.props.setLogin({
       email: this.state.email,

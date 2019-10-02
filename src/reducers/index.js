@@ -2,6 +2,7 @@ const initialState = {
   user: null,
   loading: true,
   error: null,
+  news: null,
 };
 
 
@@ -29,11 +30,19 @@ const reducer = (state = initialState, action) => {
       }
     }
 
-    case 'FETCH_LOGIN_FAILURE': {
+    // case 'FETCH_LOGIN_FAILURE': {
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     error: action.value,
+    //   }
+    // }
+
+    case 'FETCH_FAILURE': {
       return {
         ...state,
         loading: false,
-        error: action.value.message,
+        error: action.value,
       }
     }
 
@@ -65,13 +74,13 @@ const reducer = (state = initialState, action) => {
       }
     }
 
-    case 'SET_LOGIN_FAILURE': {
-      return {
-        ...state,
-        loading: false,
-        error: action.value,
-      }
-    }
+    // case 'SET_LOGIN_FAILURE': {
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     error: action.value,
+    //   }
+    // }
 
     case 'FETCH_USER_SUCCESS': {
       // if(!state.user) {
@@ -89,6 +98,18 @@ const reducer = (state = initialState, action) => {
           languages: data.languages,
           social: filterSocial(data.social)
         },
+        loading: false,
+        error: null,
+      }
+    }
+
+    case 'FETCH_NEWS_SUCCESS': {
+      const news = action.value;
+
+      return {
+
+        ...state,
+        news,
         loading: false,
         error: null,
       }
