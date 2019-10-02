@@ -16,7 +16,7 @@ class ProfilePage extends React.Component {
   static propTypes = {
     getLogin: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
-    error: PropTypes.bool,
+    error: PropTypes.string,
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
     }),
@@ -25,6 +25,9 @@ class ProfilePage extends React.Component {
   componentDidMount() {
     if(!this.props.user) {
       this.props.getLogin();
+    }
+    if(this.props.user && this.props.user.id && !this.props.user.city) {
+      this.props.getUser(this.props.user.id);
     }
   }
 
@@ -44,15 +47,15 @@ class ProfilePage extends React.Component {
 
   render() {
     const { user, loading, error } = this.props;
+    console.log(error);
     
-    if(loading || !user.city) return <Spinner />
-    if(error) return <ErrorIndicator />
+    if(error) {
+      return <ErrorIndicator error={error}/>
+    }
+
+    if(loading || (user && !user.city) ) return <Spinner />
 
     if(!user) return <Redirect to='/login'/>;
-    console.log('Render. Loading = ',loading);
-    console.log('Render. User = ', user);
-    console.log('Render. User.City = ', user.city);
-    
 
     return (
       <div className='jumbotron text-center'>
@@ -60,7 +63,7 @@ class ProfilePage extends React.Component {
         <p>Виден только после входа.</p>
         <p>Город: {user.city}</p>
         <span>Знание языков:</span> 
-          <ul>
+          <ul className='Profile__languages'>
             { this.generateLanguages(user.languages) }
           </ul>
         <div>
@@ -75,7 +78,7 @@ class ProfilePage extends React.Component {
 
   generateLanguages(languages) {
 
-    return languages.map( (item, i) => {
+    return languages.map( (item) => {
         return (<li
           key={item}
         >
@@ -85,9 +88,11 @@ class ProfilePage extends React.Component {
   }
 
   generateLinks(social) {
-    return social.map ( (item, i) => {
+    return social.map ( (item) => {
       return (<li key={item.link}>
-        <a className={`social__btn social__btn_${item.label}`} href={item.link}>{item.label}</a>
+        <a className={`social__btn social__btn_${item.label}`} href={item.link} target="_blank" rel="noopener noreferrer">
+          {item.label}
+        </a>
       </li>)
     })
   }
