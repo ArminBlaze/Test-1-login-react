@@ -42,7 +42,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.value,
+        error: handleErrorMessage( action.value ),
       }
     }
 
@@ -134,5 +134,13 @@ function filterSocial(social) {
   ]
 }
 
+function handleErrorMessage(message) {
+  if(message === 'Failed to fetch') {
+    return 'Сервер недоступен';
+  }
+  else {
+    return message;
+  }
+}
 
 export default reducer;
