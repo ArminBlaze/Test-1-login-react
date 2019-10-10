@@ -11,7 +11,7 @@ export default class NewsService {
       throw new Error(`Неизвестная ошибка при получении данных пользователя: ${response.message}`)
     }
 
-    console.log('NewsService response: ', response);
+    // console.log('NewsService response: ', response);
     
     return(response.data);
   }

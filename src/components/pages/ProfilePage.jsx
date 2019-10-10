@@ -32,7 +32,7 @@ class ProfilePage extends React.Component {
   }
 
 	componentDidUpdate(prevProps) {
-    console.log('DidUpdate. User =', this.props.user);
+    // console.log('DidUpdate. User =', this.props.user);
     
     if(!prevProps.user && this.props.user && this.props.user.id) {
       this.props.getUser(this.props.user.id);
@@ -47,7 +47,6 @@ class ProfilePage extends React.Component {
 
   render() {
     const { user, loading, error } = this.props;
-    console.log(error);
     
     if(error) {
       return <ErrorIndicator error={error}/>

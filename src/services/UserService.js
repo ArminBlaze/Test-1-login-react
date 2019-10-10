@@ -4,7 +4,7 @@ import {apiBase} from 'constants/urls';
 export default class UserService {
 
   //Зачем тут сохранять пользователя?
-  user = null;
+  // user = null;
 
   async getUser(id) {
 
@@ -18,7 +18,7 @@ export default class UserService {
       throw new Error(`Неизвестная ошибка при получении данных пользователя: ${response.message}`)
     }
 
-    console.log('UserService response: ', response);
+    // console.log('UserService response: ', response);
     
     return(response.data);
   }
