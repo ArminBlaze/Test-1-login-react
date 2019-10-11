@@ -1,9 +1,11 @@
 .Profile__languages {
   list-style-type: none;
+  padding: 0;
 }
 
 .social__list {
   list-style-type: none;
+  padding: 0;
 }
 
 .social__list li {

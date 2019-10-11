@@ -125,13 +125,9 @@ const reducer = (state = initialState, action) => {
 
 //найти web и поставить в новый массив на позицию 0
 function filterSocial(social) {
-  const idx = social.findIndex((item) => item.label === 'web');
-  
-  return [
-    ...social.slice(idx, idx+1),
-    ...social.slice(0, idx),
-    ...social.slice(idx+1) //без второго аргумента = до конца.
-  ]
+  return social.slice().sort((item) => {
+    return (item.label === 'web') ? -1 : 1;
+  })
 }
 
 function handleErrorMessage(message) {

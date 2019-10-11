@@ -81,15 +81,20 @@ class ProfilePage extends React.Component {
         return (<li
           key={item}
         >
-        + {item}
+        {item}
         </li>)
         })
   }
 
   generateLinks(social) {
     return social.map ( (item) => {
-      return (<li key={item.link}>
-        <a className={`social__btn social__btn_${item.label}`} href={item.link} target="_blank" rel="noopener noreferrer">
+      return (<li key={item.label}>
+        <a 
+          className={`social__btn social__btn_${item.label}`} 
+          href={item.link} target="_blank" 
+          rel="noopener noreferrer"
+          title={item.label}
+        >
           {item.label}
         </a>
       </li>)

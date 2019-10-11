@@ -6,7 +6,7 @@ import { getNews } from 'actions';
 import Spinner from 'components/Spinner/Spinner';
 import ErrorIndicator from 'components/ErrorIndicator/ErrorIndicator';
 import PropTypes from 'prop-types';
-// import './NewsPage.css';
+import './NewsPage.css';
 
 
 class NewsPage extends React.Component {
@@ -34,7 +34,7 @@ class NewsPage extends React.Component {
 
 
     return (
-      <div>
+      <div className='NewsPage'>
         <p>Всего новостей: {news.length}</p>
         { this.generateNews(news) }
       </div>

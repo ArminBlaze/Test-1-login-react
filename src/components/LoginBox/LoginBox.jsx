@@ -5,7 +5,7 @@ import withLoginService from 'hocs/withLoginService';
 import {compose, bindActionCreators} from 'redux';
 import { setLogin, getLogin } from 'actions';
 // import Spinner from 'components/Spinner/Spinner';
-import SpinnerInner from 'components/SpinnerInner/SpinnerInner';
+// import SpinnerInner from 'components/SpinnerInner/SpinnerInner';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './LoginBox.css';
@@ -32,7 +32,7 @@ class LoginBox extends React.Component {
   render() {
     const { user, loading } = this.props;
     
-    let spinner = (loading) ? <SpinnerInner /> : null;
+    // let spinner = (loading) ? <SpinnerInner /> : null;
     let isButtonDisabled = (loading) ? 'disabled' : false;
 
 
@@ -41,7 +41,6 @@ class LoginBox extends React.Component {
         <Link to="/login"
           className="LoginBox__link"
         >
-          {spinner}
           Войти
         </Link>
       );
@@ -53,7 +52,6 @@ class LoginBox extends React.Component {
         className="LoginBox__btn"
         onClick={ this.onExitClick }
         >
-          {spinner}
           Выход
       </button>
     )
