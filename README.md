@@ -1,7 +1,9 @@
 ## Тестовое задание по Реакту.
 
 В разных ветках содержатся решения трёх заданий:
+
 [Ветка задания 1](https://github.com/ArminBlaze/Test-1-login-react/tree/1.5-improvements)
+
 [Ветка задания 2](https://github.com/ArminBlaze/Test-1-login-react/tree/2.0)
 
 ## Запуск проекта
