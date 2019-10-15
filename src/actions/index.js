@@ -24,20 +24,6 @@ const fetchError = (error) => {
   }
 }
 
-// const loginError = (error) => {
-//   return {
-//     type: 'FETCH_LOGIN_FAILURE',
-//     value: error,
-//   }
-// }
-
-
-// const loginSend = () => {
-//   return {
-//     type: 'SET_LOGIN_REQUEST'
-//   }
-// }
-
 const loginSendOk = (id) => {
   if(!id) {
     return {
@@ -51,19 +37,11 @@ const loginSendOk = (id) => {
   }
 }
 
-// const loginSendFail = (error) => {
-  
-//   return {
-//     type: 'SET_LOGIN_FAILURE',
-//     value: error,
-//   }
-// }
-
 const getLogin = (loginService) => () => (dispatch) => {
   dispatch( fetchRequested() );
   loginService.getLogin()
     .then( (id) => dispatch(loginLoaded(id)) )
-    .catch( (err) => dispatch(fetchError(err.message)) )
+    .catch( (err) => dispatch(fetchError(err)) )
 }
 
 const setLogin = (loginService) => (data) => (dispatch) => {
@@ -71,8 +49,7 @@ const setLogin = (loginService) => (data) => (dispatch) => {
   loginService.setLogin(data)
     .then( (id) => dispatch(loginSendOk(id)) )
     .catch( (err) => {
-      console.dir(err);
-      dispatch(fetchError(err.message)) 
+      dispatch(fetchError(err)) 
     })
 }
 
@@ -80,7 +57,7 @@ const getUser = (userService) => (id) => (dispatch) => {
   dispatch( fetchRequested() );
   userService.getUser(id)
     .then( (data) => dispatch(userLoaded(data)) )
-    .catch( (err) => dispatch(fetchError(err.message)) )
+    .catch( (err) => dispatch(fetchError(err)) )
 }
 
 const userLoaded = (data) => {
@@ -94,7 +71,7 @@ const getNews = (newsService) => (id) => (dispatch) => {
   dispatch( fetchRequested() );
   newsService.getNews(id)
     .then( (data) => dispatch(newsLoaded(data)) )
-    .catch( (err) => dispatch(fetchError(err.message)) )
+    .catch( (err) => dispatch(fetchError(err)) )
 }
 
 const newsLoaded = (data) => {

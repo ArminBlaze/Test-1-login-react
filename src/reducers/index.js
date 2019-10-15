@@ -130,12 +130,14 @@ function filterSocial(social) {
   })
 }
 
-function handleErrorMessage(message) {
-  if(message === 'Failed to fetch') {
-    return 'Сервер недоступен';
+function handleErrorMessage(err) {
+  if(err.message === 'Failed to fetch') {
+    return {
+      message: 'Сервер недоступен'
+    }
   }
   else {
-    return message;
+    return err;
   }
 }
 

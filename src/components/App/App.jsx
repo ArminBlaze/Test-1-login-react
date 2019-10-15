@@ -1,7 +1,10 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import withLoginService from 'hocs/withLoginService';
 
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+
+import withLoginService from 'hocs/withLoginService';
 import Header from 'components/Header/Header';
 import {
   HomePage,
@@ -17,6 +20,7 @@ class App extends React.Component {
   render() {
     return (
         <main role="main" className="container">
+          <ReactNotification />
           <Header />
           <Switch >
             <Route path="/" exact component={HomePage}/>

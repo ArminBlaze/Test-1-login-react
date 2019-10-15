@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import withLoginService from 'hocs/withLoginService';
@@ -8,7 +8,10 @@ import SpinnerInner from 'components/SpinnerInner/SpinnerInner';
 import PropTypes from 'prop-types';
 import './LoginPage.css';
 
-class LoginPage extends React.Component  {
+import { store } from 'react-notifications-component';
+
+
+class LoginPage extends PureComponent  {
   state = {
     email: '',
     password: ''
@@ -17,10 +20,35 @@ class LoginPage extends React.Component  {
   static propTypes = {
     setLogin: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
-    error: PropTypes.string,
+    error: PropTypes.object,
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
     }),
+  }
+
+  componentDidUpdate(prevProps) {
+    const error = this.props.error;
+    if(!error) return;
+
+    if(!prevProps.error || prevProps.error !== error) {
+      this.showPopup(error);
+    } 
+  }
+
+  showPopup(error) {
+    store.addNotification({
+      title: "Ошибка!",
+      message: error.message,
+      type: "danger",
+      insert: "top",
+      container: "top-center",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true
+      }
+    });
   }
 
   onMailChange = (e) => {
@@ -37,8 +65,6 @@ class LoginPage extends React.Component  {
   
   onFormSubmit = (e) => {
     e.preventDefault();
-    console.log('Отправка Формы');
-    
 
     this.props.setLogin({
       email: this.state.email,
@@ -63,12 +89,13 @@ class LoginPage extends React.Component  {
     if(user) return <Redirect to='/profile'/>;
 
     let errorClass = (error) ? 'show' : '';
+
     let isButtonDisabled = (loading) ? 'disabled' : false;
 
     return (
       <div className='LoginPage jumbotron'>
         <div className={`${errorClass} LoginPage__error alert alert-danger`}>
-          {error}
+          {error && error.message}
         </div>
         <p>Войдите, чтобы увидеть секретную страницу!</p>
         <form onSubmit={ this.onFormSubmit }>
