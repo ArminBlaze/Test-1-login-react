@@ -8,6 +8,8 @@ import ErrorIndicator from 'components/ErrorIndicator/ErrorIndicator';
 import PropTypes from 'prop-types';
 import './NewsPage.css';
 
+import { store } from 'react-notifications-component';
+
 
 class NewsPage extends React.Component {
 
@@ -22,13 +24,38 @@ class NewsPage extends React.Component {
     this.props.getNews();
   }
 
+  componentDidUpdate(prevProps) {
+    const error = this.props.error;
+    if(!error) return;
+
+    if(!prevProps.error || prevProps.error !== error) {
+      this.showPopup(error);
+    } 
+  }
+
+  showPopup(error) {
+    store.addNotification({
+      title: "Ошибка!",
+      message: error.message,
+      type: "danger",
+      insert: "top",
+      container: "top-center",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true
+      }
+    });
+  }
+
 
   render() {
     const { news, loading, error } = this.props;
 
-    if(error) {
-      return <ErrorIndicator error={error}/>
-    }
+    // if(error) {
+    //   return <ErrorIndicator error={error}/>
+    // }
 
     if(loading || !news) return <Spinner />
 

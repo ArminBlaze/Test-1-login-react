@@ -10,6 +10,8 @@ import ErrorIndicator from 'components/ErrorIndicator/ErrorIndicator';
 import PropTypes from 'prop-types';
 import './ProfilePage.css';
 
+import { store } from 'react-notifications-component';
+
 
 class ProfilePage extends React.Component {
 
@@ -32,25 +34,46 @@ class ProfilePage extends React.Component {
   }
 
 	componentDidUpdate(prevProps) {
-    // console.log('DidUpdate. User =', this.props.user);
-    
-    if(!prevProps.user && this.props.user && this.props.user.id) {
-      this.props.getUser(this.props.user.id);
-      return;
+    const {error, user} = this.props;
+
+    if(user && user.id) {
+      if(!prevProps.user) {
+        this.props.getUser(user.id);
+      }
+      else if(prevProps.user && user.id !== prevProps.user.id) {
+        this.props.getUser(user.id);
+      }
     }
 
-    if(prevProps.user && this.props.user && this.props.user.id !== prevProps.user.id) {
-      this.props.getUser(this.props.user.id);
-      return;
+    if(error) {
+      if(!prevProps.error || prevProps.error !== error) {
+        this.showPopup(error);
+      } 
     }
-	}
+  }
+
+  showPopup(error) {
+    store.addNotification({
+      title: "Ошибка!",
+      message: error.message,
+      type: "danger",
+      insert: "top",
+      container: "top-center",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true
+      }
+    });
+  }
 
   render() {
     const { user, loading, error } = this.props;
     
-    if(error) {
-      return <ErrorIndicator error={error}/>
-    }
+    // if(error) {
+    //   return <ErrorIndicator error={error}/>
+    // }
 
     if(loading || (user && !user.city) ) return <Spinner />
 
