@@ -19,8 +19,12 @@ class ProfilePage extends React.Component {
     getLogin: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
     error: PropTypes.string,
+    
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
+      city: PropTypes.string,
+      languages: PropTypes.array,
+      social: PropTypes.array,
     }),
   }
 
